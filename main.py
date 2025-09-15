@@ -51,37 +51,50 @@
 # Dataframe:
 # A Pandas DataFrame is a two-dimensional, tabular data structure that works like a spreadsheet with rows and columns.
 
+# import pandas as pd
+
+# data={
+#     "Name": ["Spongebob","Squarepants","Patrick"],
+#     "Age": [20,30,40]
+# }
+# print(data)
+
+# df=pd.DataFrame(data)
+# print(df)
+# df1=pd.DataFrame(data, index=["emp1","emp2","emp3"])
+# print(df1)
+
+# print(df1.loc["emp1"])
+# print(df.iloc[1])
+
+# # add a new column
+# df["Job"]=["Cook","Chef","Cashier"]
+# print(df)
+
+# # add a new row
+# new_row=pd.DataFrame([{"Name":"Sandy","Age":29,"Job":"Engineer"},
+#                       {"Name":"Rahul","Age":25,"Job":"Developer"}])   # see what happens if we write different key like instead of job, try writing something else like role, salary, or anything...
+# df=pd.concat([df, new_row])
+# print(df)
+
+# new_row1=pd.DataFrame([{"Name":"Sandy","Age":29,"Job":"Engineer"},
+#                       {"Name":"Rahul","Age":25,"Job":"Developer"}],
+#                       index=["emp4","emp5"])
+# df1=pd.concat([df1, new_row1])
+# print(df1)
+
+
+# --------------------------------------------------------------------------------------------
+
 import pandas as pd
 
-data={
-    "Name": ["Spongebob","Squarepants","Patrick"],
-    "Age": [20,30,40]
-}
-print(data)
+df=pd.read_csv("data.csv")
+print(df)    # it'll show truncated version, first 5 rows and last 5 rows
+print(df.to_string())     # if want to see full data
 
-df=pd.DataFrame(data)
-print(df)
-df1=pd.DataFrame(data, index=["emp1","emp2","emp3"])
+df1=pd.read_json("pokemon.json")
 print(df1)
-
-print(df1.loc["emp1"])
-print(df.iloc[1])
-
-# add a new column
-df["Job"]=["Cook","Chef","Cashier"]
-print(df)
-
-# add a new row
-new_row=pd.DataFrame([{"Name":"Sandy","Age":29,"Job":"Engineer"},
-                      {"Name":"Rahul","Age":25,"Job":"Developer"}])   # see what happens if we write different key like instead of job, try writing something else like role, salary, or anything...
-df=pd.concat([df, new_row])
-print(df)
-
-new_row1=pd.DataFrame([{"Name":"Sandy","Age":29,"Job":"Engineer"},
-                      {"Name":"Rahul","Age":25,"Job":"Developer"}],
-                      index=["emp4","emp5"])
-df1=pd.concat([df1, new_row1])
-print(df1)
+print(df1.to_string())   # its still not printing all 150 cols
 
 
 # --------------------------------------------------------------------------------------------
