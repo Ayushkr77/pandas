@@ -143,14 +143,44 @@
 
 # Filtering is when you keep only select rows of a DataFrame that meet a certain condition.
 
+# import pandas as pd
+# df=pd.read_csv("data.csv")
+
+# tall_pokemon=df[df["Height"]>=2]
+# print(tall_pokemon)
+
+# legendary_pokemon=df[df["Legendary"]==1]
+# print(legendary_pokemon)
+
+# water_pokemon=df[(df["Type1"]=="Water") | (df["Type2"]=="Water")]
+# print(water_pokemon)
+
+
+
+# ------------------------------------------------------------------------------------------------
+
+
+# Aggregation
+# Aggregation in pandas is when you take many values and summarize them into a single value. Often used with groupby() function
+
 import pandas as pd
 df=pd.read_csv("data.csv")
 
-tall_pokemon=df[df["Height"]>=2]
-print(tall_pokemon)
+# whole dataframe
+print(df.mean(numeric_only=True))   # numeric_only=True bcz there are several columns which doesnt contain numeric values
+print(df.sum(numeric_only=True))
+print(df.min(numeric_only=True))
+print(df.max(numeric_only=True))
+print(df.count())  # count counts non null values
 
-legendary_pokemon=df[df["Legendary"]==1]
-print(legendary_pokemon)
+# single column
+print(df["Height"].mean())  
+print(df["Height"].sum())
+print(df["Height"].min())
+print(df["Height"].max())
+print(df["Height"].count())
 
-water_pokemon=df[(df["Type1"]=="Water") | (df["Type2"]=="Water")]
-print(water_pokemon)
+
+# group by
+group=df.groupby("Type1")
+print(group["Height"].mean())
