@@ -101,40 +101,56 @@
 
 
 # Selection in pandas
+# Selection in Pandas means pulling out specific data from a Series or DataFrame.
 
-import pandas as pd
+# import pandas as pd
 
-df=pd.read_csv("data.csv")
+# df=pd.read_csv("data.csv")
 
-# selection by column
-print(df["Name"])   # can do .to_string()  if want all the cols
-print(df[["Name","Height","Weight"]])
+# # selection by column
+# print(df["Name"])   # can do .to_string()  if want all the cols
+# print(df[["Name","Height","Weight"]])
 
-# selection by rows
-print(df.loc[1])
-# now we'll select rows by using names
-df1=pd.read_csv("data.csv",index_col="Name")
-print(df1)
-print(df1.loc["Pikachu"])
+# # selection by rows
+# print(df.loc[1])
+# # now we'll select rows by using names
+# df1=pd.read_csv("data.csv",index_col="Name")
+# print(df1)
+# print(df1.loc["Pikachu"])
 
-print(df1.loc["Pikachu",["Height","Weight"]])
-print(df1.loc["Charizard":"Blastoise", ["Height","Weight"]])   # label-based slice on the index. We'll get from Charizard to Blastoise
+# print(df1.loc["Pikachu",["Height","Weight"]])
+# print(df1.loc["Charizard":"Blastoise", ["Height","Weight"]])   # label-based slice on the index. We'll get from Charizard to Blastoise
 
-print(df1.iloc[0:11])   # will return 11 rows from 0 to 10
-print(df1.iloc[0:11:2])
-print(df1.iloc[0:11:2, 0:3])  # first 3 cols
+# print(df1.iloc[0:11])   # will return 11 rows from 0 to 10
+# print(df1.iloc[0:11:2])
+# print(df1.iloc[0:11:2, 0:3])  # first 3 cols
 
 
 
-# Exercise
+# # Exercise
 
-import pandas as pd
-df = pd.read_csv("data.csv", index_col="Name")
-pokemon = input("Enter a Pokemon name: ")
-try:
-    print(df.loc[pokemon])
-except KeyError:
-    print(f"{pokemon} not found")
+# import pandas as pd
+# df = pd.read_csv("data.csv", index_col="Name")
+# pokemon = input("Enter a Pokemon name: ")
+# try:
+#     print(df.loc[pokemon])
+# except KeyError:
+#     print(f"{pokemon} not found")
 
 
 # ----------------------------------------------------------------------------------------------
+
+
+# Filtering is when you keep only select rows of a DataFrame that meet a certain condition.
+
+import pandas as pd
+df=pd.read_csv("data.csv")
+
+tall_pokemon=df[df["Height"]>=2]
+print(tall_pokemon)
+
+legendary_pokemon=df[df["Legendary"]==1]
+print(legendary_pokemon)
+
+water_pokemon=df[(df["Type1"]=="Water") | (df["Type2"]=="Water")]
+print(water_pokemon)
