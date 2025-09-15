@@ -1,0 +1,23 @@
+Pandas: 
+Pandas is a Python library for data analysis and manipulation.
+It is built on top of NumPy and makes working with structured data (like tables, spreadsheets, databases) much easier.
+
+Key Features of Pandas:
+Provides two main data structures:
+    Series → 1D labeled array (like a column in Excel).
+    DataFrame → 2D labeled table (like an Excel sheet or SQL table).
+Handles missing data easily.
+Supports data cleaning, filtering, grouping, merging, reshaping, and aggregation.
+Can read/write data from many formats: CSV, Excel, SQL, JSON, etc.
+Built for data analysis and often used in data science & machine learning.
+
+
+
+Why Pandas?
+Works like Excel in Python but with much more power.
+Simplifies data manipulation that would take many lines of code with plain Python or NumPy.
+Essential for data science, machine learning, finance, research, and analytics.
+
+In short:
+NumPy = fast number crunching.
+Pandas = powerful data manipulation (especially tabular data).
