@@ -86,16 +86,55 @@
 
 # --------------------------------------------------------------------------------------------
 
-import pandas as pd
+# import pandas as pd
 
-df=pd.read_csv("data.csv")
-print(df)    # it'll show truncated version, first 5 rows and last 5 rows
-print(df.to_string())     # if want to see full data
+# df=pd.read_csv("data.csv")
+# print(df)    # it'll show truncated version, first 5 rows and last 5 rows
+# print(df.to_string())     # if want to see full data
 
-df1=pd.read_json("pokemon.json")
-print(df1)
-print(df1.to_string())   # its still not printing all 150 cols
+# df1=pd.read_json("pokemon.json")
+# print(df1)
+# print(df1.to_string())   # its still not printing all 150 cols
 
 
 # --------------------------------------------------------------------------------------------
 
+
+# Selection in pandas
+
+import pandas as pd
+
+df=pd.read_csv("data.csv")
+
+# selection by column
+print(df["Name"])   # can do .to_string()  if want all the cols
+print(df[["Name","Height","Weight"]])
+
+# selection by rows
+print(df.loc[1])
+# now we'll select rows by using names
+df1=pd.read_csv("data.csv",index_col="Name")
+print(df1)
+print(df1.loc["Pikachu"])
+
+print(df1.loc["Pikachu",["Height","Weight"]])
+print(df1.loc["Charizard":"Blastoise", ["Height","Weight"]])   # label-based slice on the index. We'll get from Charizard to Blastoise
+
+print(df1.iloc[0:11])   # will return 11 rows from 0 to 10
+print(df1.iloc[0:11:2])
+print(df1.iloc[0:11:2, 0:3])  # first 3 cols
+
+
+
+# Exercise
+
+import pandas as pd
+df = pd.read_csv("data.csv", index_col="Name")
+pokemon = input("Enter a Pokemon name: ")
+try:
+    print(df.loc[pokemon])
+except KeyError:
+    print(f"{pokemon} not found")
+
+
+# ----------------------------------------------------------------------------------------------
