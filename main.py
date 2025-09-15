@@ -163,24 +163,60 @@
 # Aggregation
 # Aggregation in pandas is when you take many values and summarize them into a single value. Often used with groupby() function
 
+# import pandas as pd
+# df=pd.read_csv("data.csv")
+
+# # whole dataframe
+# print(df.mean(numeric_only=True))   # numeric_only=True bcz there are several columns which doesnt contain numeric values
+# print(df.sum(numeric_only=True))
+# print(df.min(numeric_only=True))
+# print(df.max(numeric_only=True))
+# print(df.count())  # count counts non null values
+
+# # single column
+# print(df["Height"].mean())  
+# print(df["Height"].sum())
+# print(df["Height"].min())
+# print(df["Height"].max())
+# print(df["Height"].count())
+
+
+# # group by
+# group=df.groupby("Type1")
+# print(group["Height"].mean())
+
+
+# --------------------------------------------------------------------------------------------------
+
+
+# Data cleaning 
+# Data cleaning is the process of fixing or removing: incomplete, incorrect, or irrelevant data. ~75% of work done with Pandas is data cleaning.
+
 import pandas as pd
 df=pd.read_csv("data.csv")
 
-# whole dataframe
-print(df.mean(numeric_only=True))   # numeric_only=True bcz there are several columns which doesnt contain numeric values
-print(df.sum(numeric_only=True))
-print(df.min(numeric_only=True))
-print(df.max(numeric_only=True))
-print(df.count())  # count counts non null values
+# 1. drop irrelevant columns
+df=df.drop(columns=["Legendary","No"])
+print(df)
 
-# single column
-print(df["Height"].mean())  
-print(df["Height"].sum())
-print(df["Height"].min())
-print(df["Height"].max())
-print(df["Height"].count())
+# 2. Handle missing data
+df=df.dropna(subset=["Type2"])   # na means not available. All rows will be deleted who dowant have type2 value
+print(df)
+df=df.fillna({"Type2":"None"})   # all those rows who doesnt have type2 values will now be filled with "None". Comment above codes, then only the effect of this line will be visible
+print(df)
 
+# 3. Fix inconsistent values
+df["Type1"]=df["Type1"].replace({"Grass":"GRASS", "Fire":"FIRE"})   # all Grass values in Type1 col will be changed to GRASS annd Fire to FIRE
+print(df)
 
-# group by
-group=df.groupby("Type1")
-print(group["Height"].mean())
+# 4. Standardize text
+df["Name"]=df["Name"].str.lower()
+print(df)
+
+# 5. Fix data types
+df["Legendary"]=df["Legendary"].astype(bool)
+print(df)  # comment the above codes as earlier we have dropped the legendary col
+
+# 6. Remove duplicate values
+df=df.drop_duplicates()   # if any duplicate rows, that will be removed. Try adding duplicate rows in csv
+print(df)
